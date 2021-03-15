@@ -1,0 +1,67 @@
+一、接口说明
+1.常用接口
+	1)用户名密码认证接口
+		http://10.0.12.131:18000/am/identity/authenticate?username=TestUserName&password=TestPassword&uri=service=initService
+	2)证书认证接口
+		http://10.0.12.131:18000/am/identity/authenticate?username=SF220203198407312119&password=SF220203198407312119&uri=service=initService
+	3)Token验证接口
+		http://10.0.12.131:18000/am/identity/isTokenValid?tokenid=AQIC5wM2LY4Sfcw06sFHVxovnt7rZsPIeC2TERDcGTWrbj0.*AAJTSQACMDEAAlNLABM0NDY2NTI4Mzk0Mjk5NTY3MTg1*
+	4)单点登出接口
+		http://10.0.12.131:18000/am/identity/logout?subjectid=AQIC5wM2LY4SfcxvdvHOXjtC_eWSs2RB54tgvgK8SuYi7aQ.*AAJTSQACMDE.*
+	5)获取用户信息接口
+		http://10.0.12.131:18000/am/bjca/random/getAllUserAttributes?tokenId=AQIC5wM2LY4SfcwIgiryoumXq7pzHUuZ53A_iPSFT_GIkhI.*AAJTSQACMDEAAlNLABQtNzEwNTEwMjU3OTI1OTU1NDgyNg..*&random=NjY5MjkxMDViYTQxNGE5NDgzNGFmNjhkMzA1MDUxOWE=
+	6)获取随机数
+		http://10.0.12.131:18000/am/bjca/random/generate?tokenId=AQIC5wM2LY4SfcwIgiryoumXq7pzHUuZ53A_iPSFT_GIkhI.*AAJTSQACMDEAAlNLABQtNzEwNTEwMjU3OTI1OTU1NDgyNg..*
+	7)获取应用列表接口
+		http://10.0.12.131:18000/am/bjca/appList?tokenId=AQIC5wM2LY4Sfcw06sFHVxovnt7rZsPIeC2TERDcGTWrbj0.*AAJTSQACMDEAAlNLABM0NDY2NTI4Mzk0Mjk5NTY3MTg1*
+	
+	
+二、项目集成
+
+正常登录
+是否登录	否	进入站群登录页面	输入用户名、密码登录
+			是	进入主页
+单点登录
+是否登录	否	跳转第三方登录页面	  输入用户名、密码登录	登录成功后返回token
+			是	点击链接进入站群(携带token)	提供外部接口
+
+接口定义:
+	public void xxxx(token,username,password);
+
+1.站群管理单点登录外部接口
+判断token值是否为空		---->空	  跳转第三方登录页面
+		|
+		|	不为空
+		ˇ
+调用Token验证接口验证token是否有效		---->无效	跳转第三方登录页面
+		|
+		|	有效
+		ˇ
+站群管理登验证用户是否存在		---->不存在	  跳转第三方登录页面
+		|
+		|	存在
+		|
+		|
+		|	处理用户
+		ˇ
+显示站群主页
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
